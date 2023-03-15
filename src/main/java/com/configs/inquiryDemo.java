@@ -1,5 +1,6 @@
 package com.configs;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -7,6 +8,7 @@ import org.hibernate.SessionFactory;
 
 import com.pojos.Adminuser;
 import com.pojos.Category;
+import com.pojos.Product;
 
 import jakarta.persistence.Query;
 
@@ -15,10 +17,14 @@ public class inquiryDemo {
 		SessionFactory f = HibernateUtils.getFactory();
 		
 		try (Session ss = f.openSession()){
-			Query q = ss.createQuery("From Category");
-			List<Category> rs = q.getResultList();
+			Category c = ss.get(Category.class, 5); // persistent object
 			
-			rs.forEach(c -> System.out.printf("%d - %s \n", c.getId(), c.getName()));
+			Product p = new Product();
+			p.setName("iPad mini 2023");
+			p.setPrice(new BigDecimal(12000000));
+			p.setCategoryID(c);
+			
+			ss.save(p);
 		}
 		
 		//ss.close();
