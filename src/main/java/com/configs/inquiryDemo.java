@@ -11,11 +11,10 @@ public class inquiryDemo {
 		SessionFactory f = HibernateUtils.getFactory();
 		
 		try (Session ss = f.openSession()){			
-			Category c = ss.get(Category.class, 7); // persistent
-			c.setName("GAMING");	
-			ss.getTransaction().begin(); // open transaction
-			ss.save(c); // update
-			ss.getTransaction().commit(); // push data on cache to DB
+			Category c = ss.get(Category.class, 7);
+			ss.getTransaction().begin();
+			ss.delete(c);
+			ss.getTransaction().commit();
 		}
 		
 		//ss.close();
