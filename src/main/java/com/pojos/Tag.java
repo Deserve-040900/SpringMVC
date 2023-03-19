@@ -3,24 +3,22 @@ package com.pojos;
 import java.io.Serializable;
 import java.util.List;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "category")
-public class Category implements Serializable {
+@Table(name = "tag")
+public class Tag implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
 	private int id;
-	@Column(name = "Name")
 	private String name;
-	@OneToMany(mappedBy = "categoryId")
+	
+	@ManyToMany(mappedBy = "tags")
 	private List<Product> products;
 	
 	public List<Product> getProducts() {

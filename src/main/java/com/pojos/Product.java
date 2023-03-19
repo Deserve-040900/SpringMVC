@@ -3,6 +3,7 @@ package com.pojos;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -30,8 +33,21 @@ public class Product implements Serializable {
 	// Configuration Foreign key
 	@ManyToOne
 	@JoinColumn(name = "CategoryID")
-	private Category categoryID; // FK is the object
+	private Category categoryId; // FK is the object
 	
+	@ManyToMany
+	@JoinTable(
+			name = "product_tag",
+			joinColumns = @JoinColumn(name = "product_id"),
+			inverseJoinColumns = @JoinColumn(name = "tag_id") )
+	private List<Tag> tags;
+	
+	public List<Tag> getTags() {
+		return tags;
+	}
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
 	public int getId() {
 		return id;
 	}
@@ -68,11 +84,11 @@ public class Product implements Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public Category getCategoryID() {
-		return categoryID;
+	public Category getCategoryId() {
+		return categoryId;
 	}
-	public void setCategoryID(Category categoryID) {
-		this.categoryID = categoryID;
+	public void setCategoryId(Category categoryID) {
+		this.categoryId = categoryID;
 	}
 	
 }

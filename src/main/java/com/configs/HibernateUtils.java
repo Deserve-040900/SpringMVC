@@ -10,6 +10,7 @@ import org.hibernate.service.ServiceRegistry;
 import com.pojos.Adminuser;
 import com.pojos.Category;
 import com.pojos.Product;
+import com.pojos.Tag;
 
 public class HibernateUtils {
 	private static final SessionFactory factory;
@@ -29,6 +30,7 @@ public class HibernateUtils {
 		
 		conf.addAnnotatedClass(Category.class);
 		conf.addAnnotatedClass(Product.class);
+		conf.addAnnotatedClass(Tag.class);
 		
 		ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
 		

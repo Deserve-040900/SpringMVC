@@ -22,7 +22,7 @@ public class inquiryDemo {
 			Product p = new Product();
 			p.setName("iPad mini 2023");
 			p.setPrice(new BigDecimal(12000000));
-			p.setCategoryID(c);
+			p.setCategoryId(c);
 			
 			ss.save(p);
 		}
