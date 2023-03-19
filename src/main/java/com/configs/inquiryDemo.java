@@ -14,6 +14,7 @@ import com.pojos.Tag;
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
 public class inquiryDemo {
@@ -25,6 +26,9 @@ public class inquiryDemo {
 			CriteriaQuery<Product> query = cb.createQuery(Product.class);
 			Root rt = query.from(Product.class);
 			query.select(rt);
+			
+			Predicate pr1 = cb.like(rt.get("name").as(String.class), "%iPad%");
+			query = query.where(pr1);
 			
 			Query q = ss.createQuery(query);
 			List<Product> prod = q.getResultList();
