@@ -27,8 +27,9 @@ public class inquiryDemo {
 			Root rt = query.from(Product.class);
 			query.select(rt);
 			
-			Predicate pr1 = cb.like(rt.get("name").as(String.class), "%iPad%");
-			query = query.where(pr1);
+//			Predicate pr1 = cb.like(rt.get("name").as(String.class), "%iPad%");
+			Predicate pr2 = cb.greaterThanOrEqualTo(rt.get("price").as(BigDecimal.class), new BigDecimal(20000000));
+			query = query.where(pr2);
 			
 			Query q = ss.createQuery(query);
 			List<Product> prod = q.getResultList();
