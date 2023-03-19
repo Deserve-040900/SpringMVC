@@ -28,9 +28,10 @@ public class inquiryDemo {
 			query.select(rt);
 			
 //			Predicate pr1 = cb.like(rt.get("name").as(String.class), "%iPad%");
-			Predicate pr2 = cb.greaterThanOrEqualTo(rt.get("price").as(BigDecimal.class), new BigDecimal(23000000));
-			Predicate pr3 = cb.lessThanOrEqualTo(rt.get("price").as(BigDecimal.class), new BigDecimal(30000000));
-			query = query.where(pr2);
+//			Predicate pr2 = cb.greaterThanOrEqualTo(rt.get("price").as(BigDecimal.class), new BigDecimal(23000000));
+//			Predicate pr3 = cb.lessThanOrEqualTo(rt.get("price").as(BigDecimal.class), new BigDecimal(30000000));
+			Predicate pr4 = cb.between(rt.get("price").as(BigDecimal.class), new BigDecimal(25000000), new BigDecimal(30000000));
+			query = query.where(pr4);
 			
 			Query q = ss.createQuery(query);
 			List<Product> prod = q.getResultList();
