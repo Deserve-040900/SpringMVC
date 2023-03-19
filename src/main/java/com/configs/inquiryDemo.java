@@ -23,20 +23,20 @@ public class inquiryDemo {
 		
 		try (Session ss = f.openSession()){
 			CriteriaBuilder cb = ss.getCriteriaBuilder();
-			CriteriaQuery<Product> query = cb.createQuery(Product.class);
-			Root rt = query.from(Product.class);
-			query.select(rt);
+			CriteriaQuery<Object[]> query = cb.createQuery(Object[].class);
+			Root rP = query.from(Product.class);
+			Root rC = query.from(Category.class);			
+			Predicate p = cb.equal(rP.get("category"), rC.get("id")); // inner join table
 			
-//			Predicate pr1 = cb.like(rt.get("name").as(String.class), "%iPad%");
-//			Predicate pr2 = cb.greaterThanOrEqualTo(rt.get("price").as(BigDecimal.class), new BigDecimal(23000000));
-//			Predicate pr3 = cb.lessThanOrEqualTo(rt.get("price").as(BigDecimal.class), new BigDecimal(30000000));
-			Predicate pr4 = cb.between(rt.get("price").as(BigDecimal.class), new BigDecimal(25000000), new BigDecimal(30000000));
-			query = query.where(pr4);
+			query = query.where(p);
+			query.multiselect(rC.get("id"), rC.get("name"), cb.count(rP.get("id")));
+			query.groupBy(rC.get("id"));
+			query.orderBy(cb.asc(rC.get("name")));
 			
 			Query q = ss.createQuery(query);
-			List<Product> prod = q.getResultList();
-			prod.forEach(p -> {
-				System.out.printf("%d - %s - %.1f VND - %s \n", p.getId(), p.getName(), p.getPrice(), p.getCategoryId().getName());
+			List<Object[]> rs = q.getResultList();
+			rs.forEach(o -> {
+				System.out.printf("%d - %s - %d \n", o[0], o[1], o[2]);
 			});
 		}
 		
