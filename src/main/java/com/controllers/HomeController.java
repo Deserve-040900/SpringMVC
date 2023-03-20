@@ -1,5 +1,7 @@
 package com.controllers;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +24,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/test")
-	public String demo(Model model, 
-					   @RequestParam(name = "firstName", required = false, defaultValue = "abc") String fn, 
-					   @RequestParam(name = "lastName", required = false, defaultValue = "xyz") String ln) {
+	public String demo(Model model, @RequestParam(required = false) Map<String, String> params) {
+		String fn = params.get("firstName");
+		String ln = params.get("lastName");
 		model.addAttribute("name", fn + ' ' + ln);
 		return "index";
 	}
