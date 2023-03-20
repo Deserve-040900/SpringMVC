@@ -7,6 +7,18 @@
 		<title>HomePage</title>
 	</head>
 	<body>
-		<h2>hello ${name}</h2>
+		<h1>Hello ${name}</h1>
+		${Category}
+		<ul>
+			<c:forEach items="${Category}" var="cat">
+				<li>${cat}</li>
+			</c:forEach>
+		</ul>
+		<!-- multiplication table with forEach Loop -->
+		<ul>
+			<c:forEach begin="1" end="10" var="i">
+				<li>2 * ${i} = ${2*i}</li>
+			</c:forEach>
+		</ul>
 	</body>
 </html>
