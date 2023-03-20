@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page isELIgnored="false" %>
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
@@ -6,6 +7,6 @@
 		<title>HomePage</title>
 	</head>
 	<body>
-		<h1>Hello ${name}</h1>
+		<h2>hello ${name}</h2>
 	</body>
 </html>

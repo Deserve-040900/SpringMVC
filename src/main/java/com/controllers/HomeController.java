@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.pojos.user;
+import com.pojos.User;
 
 @Controller
 public class HomeController {
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@GetMapping("/")
 	public String index(Model model) {
 		model.addAttribute("name", "Project Maven");
 		return "index";
@@ -38,14 +38,15 @@ public class HomeController {
 	
 	@GetMapping("/login")
 	public String loginView(Model model) {
-		model.addAttribute("user", new user());
+		model.addAttribute("user", new User());
 		return "login";
 	}
-	@PostMapping("/login")
-	public String loginHandler(Model model, @ModelAttribute(value = "user") user users) {
-		if (users.getUsername().equals("admin") && users.getPassword().equals("12345")) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String loginHandler(Model model, @ModelAttribute(value = "user") User user) {
+		if (user.getUsername().equals("admin") && user.getPassword().equals("12345")) {
 			model.addAttribute("msg", "SUCCESSFUL");
-		} else { model.addAttribute("msg", "FAILED!!"); }
+		} 
+		else { model.addAttribute("msg", "FAILED!!"); }
 		return "login";
 	}
 	// http GET --> get resources (public) --> URL?...
