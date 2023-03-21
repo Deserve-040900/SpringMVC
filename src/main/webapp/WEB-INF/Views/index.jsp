@@ -1,5 +1,6 @@
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
@@ -7,18 +8,11 @@
 		<title>HomePage</title>
 	</head>
 	<body>
-		<h1>Hello ${name}</h1>
-		${Category}
-		<ul>
-			<c:forEach items="${Category}" var="cat">
-				<li>${cat}</li>
-			</c:forEach>
-		</ul>
-		<!-- multiplication table with forEach Loop -->
-		<ul>
-			<c:forEach begin="1" end="10" var="i">
-				<li>2 * ${i} = ${2*i}</li>
-			</c:forEach>
-		</ul>
+		<h1>
+			<spring:message code="page.title" />
+		</h1>
+		<h3>
+			<spring:message code="page.welcome" />
+		</h3>
 	</body>
 </html>
