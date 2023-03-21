@@ -26,6 +26,7 @@ public class HomeController {
 		cate.add("Laptop");
 		model.addAttribute("name", "Project Maven");
 		model.addAttribute("Category", cate);
+		model.addAttribute("user", new User());
 		return "index";
 	}
 	

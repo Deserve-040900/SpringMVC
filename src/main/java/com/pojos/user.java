@@ -1,9 +1,18 @@
 package com.pojos;
 
+import org.springframework.http.codec.multipart.Part;
+
 public class User {
 	private String username;
 	private String password;
+	private Part avatar;
 	
+	public Part getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(Part avatar) {
+		this.avatar = avatar;
+	}
 	public String getUsername() {
 		return username;
 	}

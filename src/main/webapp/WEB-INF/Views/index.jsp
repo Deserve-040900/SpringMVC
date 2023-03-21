@@ -1,6 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,5 +18,11 @@
 		</h3>
 		<img alt="tiger-cute" src="<spring:url value="/img/Tiger.jpg"/>" >
 		<a href="<spring:url value="/login" htmlEscape="true"/>" >Go to Login page!</a>
+		
+		<form method="post" enctype="multipart/form-data" action="" modelAttribute="user">
+			<form:input type="file" path="avatar" />
+			<input type="submit" value="Upload" />
+		</form>
 	</body>
+	<!-- https://www.logicbig.com/tutorials/spring-framework/spring-web-mvc/file-upload.html -->
 </html>
